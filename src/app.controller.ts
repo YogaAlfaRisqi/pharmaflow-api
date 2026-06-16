@@ -1,12 +1,18 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  healthCheck() {
+    return {
+      status: 'ok',
+      message: '🚀 PharmaFlow API is running',
+      version: 'v1',
+      timestamp: new Date().toISOString(),
+      endpoints: {
+        api: '/api/v1',
+        docs: '/api/docs',
+      },
+    };
   }
 }
